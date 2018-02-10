@@ -1,0 +1,75 @@
+package qr2008a;
+
+import java.util.Scanner;
+
+public class SavingtheUniversefixed {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt();
+		int S;
+		int Q;
+		String query;
+		String empty;
+		String empty2;
+		int realcount;
+		String[] engines = new String[10];
+		//String[] copiedengines = new String[10];
+		String[] stack = new String[10];
+		
+		for(int i=0; i<N; i++) {
+			realcount = 0;
+			//this code will be executed for each case.
+			S = sc.nextInt();
+			empty = sc.nextLine();
+			
+			for(int j=0; j<S; j++) {
+				//for each search engines.
+				engines[j] = sc.nextLine();
+				//copiedengines[j] = engines[j];
+			}
+			
+			Q = sc.nextInt();
+			empty2 = sc.nextLine();
+			
+			int stackcount=0;
+			int stackcheck;
+			
+			for(int j=0; j<Q; j++) {
+				query = sc.nextLine();
+				stackcheck=0;
+			
+				
+				for(int k=0; k<S; k++) {
+					if(stack[k]!=null)
+					if(stack[k].equals(query)) {
+						stackcheck++;
+					}
+				}
+				
+				if(stackcheck==0) {
+					stack[stackcount] = query;
+					stackcount++;
+				}
+				
+				if(stackcount==S) {
+					realcount++;
+					stack[0] = stack[S-1];
+					for(int p=1; p<S; p++) {
+						stack[p] = null;
+					}
+					/*for(int x=0; x<S; x++) {
+						copiedengines[x] = engines[x];
+					}*/
+					stackcount = 1;
+				}
+			}
+			
+			int TC = i+1; 
+			
+			System.out.println("Case #" + TC + ": "+realcount);
+		}
+	}
+}
